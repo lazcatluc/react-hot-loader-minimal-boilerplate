@@ -1,7 +1,11 @@
 import React from 'react'
+import ShoppingList from './ShoppingList.js'
 
 const Root = () => (
-  <div>Hello React Hot Loader!</div>
+  <div>
+    <div>Hello React Hot Loader 1!</div>
+    {ShoppingList(['x', 'y', 'z'])}
+  </div>
 )
 
 export default Root
