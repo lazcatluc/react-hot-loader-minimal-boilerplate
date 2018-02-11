@@ -1,0 +1,11 @@
+div.ShoppingList {
+  width: 100%;
+}
+
+div.ShoppingList div {
+  cursor: pointer;
+}
+
+div.ShoppingList div:hover {
+  background-color: grey;
+}

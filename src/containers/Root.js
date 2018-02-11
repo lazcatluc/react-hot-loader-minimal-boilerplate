@@ -1,11 +1,11 @@
 import React from 'react'
-import ShoppingList from './ShoppingList.js'
+import ShoppingList from './shopping/ShoppingList.js'
 
-const Root = () => (
+const Root = ({ currentState }) => (
   <div>
-    <div>Hello React Hot Loader 1!</div>
-    {ShoppingList(['x', 'y', 'z'])}
+    <div>Hello React Hot Loader 2!</div>
+    {ShoppingList(currentState.shoppingListItems)}
   </div>
-)
+);
 
 export default Root

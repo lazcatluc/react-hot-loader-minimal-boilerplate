@@ -1,20 +1,23 @@
 import React from 'react'
+import { createStore } from 'redux'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-
+import reduce from './containers/Reduce'
 import Root from './containers/Root'
 
-const render = Component => {
+const store = createStore(reduce);
+
+const render = () => {
   ReactDOM.render(
     <AppContainer>
-      <Component />
+      <Root currentState={store.getState()} />
     </AppContainer>,
     document.getElementById('root')
   )
-}
-
-render(Root)
+};
+store.subscribe(render);
+render();
 
 if (module.hot) {
-  module.hot.accept('./containers/Root', () => { render(Root) })
+  module.hot.accept('.', () => { render() });
 }
