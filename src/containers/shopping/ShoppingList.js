@@ -7,7 +7,7 @@ const ShoppingList = items => (
   <div className={styles.ShoppingList}>
     {
       items.map((item, index) => <div key={index}
-                                     className={item.className}
+                                     className={item.checked?'checked':'unchecked'}
                                      id={shoppingListItem + index}
                                      onClick="">{item.text}</div>)
     }

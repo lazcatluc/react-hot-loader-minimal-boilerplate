@@ -3,7 +3,7 @@ import ShoppingList from './shopping/ShoppingList.js'
 
 const Root = ({ currentState }) => (
   <div>
-    <div>Hello React Hot Loader 2!</div>
+    <div>Hello React Hot Loader!</div>
     {ShoppingList(currentState.shoppingListItems)}
   </div>
 );
