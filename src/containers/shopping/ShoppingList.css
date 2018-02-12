@@ -9,3 +9,15 @@ div.ShoppingList div {
 div.ShoppingList div:hover {
   background-color: grey;
 }
+
+div.ShoppingList div.checked {
+  color: green;
+}
+
+div.ShoppingList.remaining div.checked {
+  display: none;
+}
+
+div.ShoppingList.completed div.unchecked {
+  display: none;
+}

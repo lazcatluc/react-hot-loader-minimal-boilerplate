@@ -10,7 +10,9 @@ const store = createStore(Reducer);
 const render = () => {
   ReactDOM.render(
     <AppContainer>
-      <Root currentState={store.getState()} />
+      <Root currentState={store.getState()}
+            onClickItem={(index) => store.dispatch({type: 'CHECK_ITEM', index})}
+            show={(which) => store.dispatch({type: 'SHOW', which})} />
     </AppContainer>,
     document.getElementById('root')
   )
