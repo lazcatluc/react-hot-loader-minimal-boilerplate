@@ -1,13 +1,8 @@
-import InitialList from './shopping/InitialList'
-import AddItem from './shopping/AddItem'
-import CheckItem from './shopping/CheckItem'
+import { combineReducers } from 'redux'
+import visibilityFilter from './visibility'
+import shoppingListItems from './items'
 
-export default (state = InitialList, action) => {
-  if (action.type === 'ADD_ITEM') {
-    return AddItem(state, action);
-  }
-  if (action.type === 'CHECK_ITEM') {
-    return CheckItem(state, action);
-  }
-  return state;
-};
+export default combineReducers({
+  shoppingListItems,
+  visibilityFilter
+});

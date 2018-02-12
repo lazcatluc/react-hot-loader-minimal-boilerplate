@@ -21,3 +21,7 @@ div.ShoppingList.remaining div.checked {
 div.ShoppingList.completed div.unchecked {
   display: none;
 }
+
+a {
+  padding-right: 5px;
+}

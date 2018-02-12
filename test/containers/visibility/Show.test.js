@@ -1,14 +1,10 @@
 import deepFreeze from 'deepfreeze'
-import Show from '../../../src/containers/shopping/Show';
+import Show from '../../../src/containers/visibility/Show';
 
-const initialState = deepFreeze({
-  visibilityFilter: 'all'
-});
+const initialState = 'all';
 
 it('should change the visibility according to parameter', () => {
-  expect(Show(initialState, deepFreeze({which: 'completed'}))).toEqual({
-    visibilityFilter: 'completed'
-  });
+  expect(Show(initialState, deepFreeze({which: 'completed'}))).toEqual('completed');
 });
 
 it('should do nothing when the selection is the same', () => {
