@@ -1,23 +1,21 @@
 import React from 'react'
-import { createStore } from 'redux'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import Reducer from './containers/Reducer'
+import state from './containers/State'
 import Root from './containers/Root'
-
-const store = createStore(Reducer);
 
 const render = () => {
   ReactDOM.render(
     <AppContainer>
-      <Root currentState={store.getState()}
-            onClickItem={(index) => store.dispatch({type: 'CHECK_ITEM', index})}
-            show={(which) => store.dispatch({type: 'SHOW', which})} />
+      <Root currentState={state.getCurrentState()}
+            onClickItem={state.checkItem}
+            show={state.show} />
     </AppContainer>,
     document.getElementById('root')
   )
 };
-store.subscribe(render);
+
+state.subscribe(render);
 render();
 
 if (module.hot) {
