@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import state from './containers/State'
 import Root from './containers/Root'
+import WebSocket from './containers/websocket/WebSocket'
+
+WebSocket.connect();
 
 const render = () => {
   ReactDOM.render(
