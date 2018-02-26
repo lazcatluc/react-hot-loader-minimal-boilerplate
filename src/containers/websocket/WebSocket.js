@@ -1,47 +1,50 @@
 const Stomp = require('stomp-websocket-js');
 const SockJS = require('sockjs-client');
 
-const WebSocket = {
-  connected: false,
-  timeout: 30000,
-  itemProcessors: []
-};
+export default (url, topic, sendEndpoint) => {
+  const ws = {
+    connected: false,
+    timeout: 30000,
+    itemProcessors: [],
+    url,
+    topic,
+    sendEndpoint
+  };
 
-WebSocket.connect = (url, topic, sendEndpoint) => {
-  var socket = new SockJS(url||'https://contezi.ro/shopping/list');
-  WebSocket.stompClient = Stomp.over(socket);
-  WebSocket.sendEndpoint = sendEndpoint||"/ws/item";
-  return new Promise((resolve, reject) => {
-    WebSocket.stompClient.connect({}, function(frame) {
-      console.log('Connected: ' + frame);
-      WebSocket.connected = true;
-      WebSocket.stompClient.subscribe(topic||'/topic/items/85299e59-2296-48e6-988b-16cca98e57f2', function(message) {
-        WebSocket.itemProcessors.map(itemProcessor => {
-          itemProcessor(JSON.parse(message.body));
+  ws.connect = () => {
+    var socket = new SockJS(url);
+    ws.stompClient = Stomp.over(socket);
+    ws.sendEndpoint = sendEndpoint;
+    return new Promise((resolve, reject) => {
+      ws.stompClient.connect({}, function(frame) {
+        ws.connected = true;
+        ws.stompClient.subscribe(topic, function(message) {
+          ws.itemProcessors.map(itemProcessor => {
+            itemProcessor(JSON.parse(message.body));
+          });
         });
+        resolve(frame);
       });
-      resolve(frame);
+      setTimeout(() => {
+        reject('Timeout');
+      }, ws.timeout);
     });
-    setTimeout(() => {
-      reject("Timeout");
-    }, WebSocket.timeout);
-  });
+  };
+
+  ws.disconnect = () => {
+    if(ws.stompClient != null && ws.isConnected()) {
+      ws.stompClient.disconnect();
+    }
+    ws.connected = false;
+  };
+  
+  ws.sendItem = function (shoppingItem) {
+    ws.stompClient.send(ws.sendEndpoint, {}, JSON.stringify(shoppingItem));
+  };
+  
+  ws.subscribe = (itemProcessor) => ws.itemProcessors.push(itemProcessor);
+  ws.isConnected = () => ws.connected;
+  
+  return ws;
 };
 
-WebSocket.disconnect = () => {
-  if(WebSocket.stompClient != null && WebSocket.isConnected()) {
-    WebSocket.stompClient.disconnect();
-  }
-  WebSocket.connected = false;
-  console.log("Disconnected");
-};
-
-WebSocket.sendItem = function (shoppingItem) {
-  WebSocket.stompClient.send(WebSocket.sendEndpoint, {}, JSON.stringify(shoppingItem));
-};
-
-WebSocket.subscribe = (itemProcessor) => WebSocket.itemProcessors.push(itemProcessor);
-
-WebSocket.isConnected = () => WebSocket.connected;
-
-export default WebSocket;

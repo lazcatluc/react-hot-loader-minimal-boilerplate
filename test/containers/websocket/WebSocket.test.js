@@ -1,45 +1,49 @@
 import WebSocket from '../../../src/containers/websocket/WebSocket';
 
+const shoppingListId = "c00af06f-787b-44f0-afb5-81be5875ed45";
+let ws;
+
 beforeEach(async() => {
-  await WebSocket.connect();
+  ws = new WebSocket('https://contezi.ro/shopping/list', '/topic/items/' + shoppingListId, '/ws/item')
+  await ws.connect();
 });
 
 afterEach(function () {
-  WebSocket.disconnect();
+  ws.disconnect();
 });
 
 it('connects', () => {
-  expect(WebSocket.isConnected()).toEqual(true);
+  expect(ws.isConnected()).toEqual(true);
 });
 
 it('sends item', () => {
-  WebSocket.sendItem({id: '1', shoppingListId: '85299e59-2296-48e6-988b-16cca98e57f2', itemName: 'ping', bought: false});
+  ws.sendItem({id: '1', shoppingListId, itemName: 'ping'});
 });
 
 it('receives item', async() => {
   let promise = new Promise(resolve => {
-    WebSocket.subscribe(shoppingItem => {
+    ws.subscribe(shoppingItem => {
       expect(shoppingItem.bought).toEqual(false);
       resolve(shoppingItem);
     })
   });
-  WebSocket.sendItem({id: '1', shoppingListId: '85299e59-2296-48e6-988b-16cca98e57f2', itemName: 'ping', bought: false});
+  ws.sendItem({id: '1', shoppingListId, itemName: 'ping'});
   await promise;
 });
 
 it('can respond to received item', async() => {
-  WebSocket.subscribe(shoppingItem => {
+  ws.subscribe(shoppingItem => {
     if (shoppingItem.itemName === 'ping') {
-      WebSocket.sendItem({id: '2', shoppingListId: '85299e59-2296-48e6-988b-16cca98e57f2', itemName: 'pong', bought: false});
+      ws.sendItem({id: '2', shoppingListId, itemName: 'pong'});
     }
   });
   const promise = new Promise(resolve => {
-    WebSocket.subscribe(shoppingItem => {
+    ws.subscribe(shoppingItem => {
       if (shoppingItem.itemName === 'pong') {
         resolve();
       }
     });
   });
-  WebSocket.sendItem({id: '1', shoppingListId: '85299e59-2296-48e6-988b-16cca98e57f2', itemName: 'ping', bought: false});
+  ws.sendItem({id: '1', shoppingListId, itemName: 'ping'});
   await promise;
 });
