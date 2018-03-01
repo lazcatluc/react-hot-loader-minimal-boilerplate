@@ -9,11 +9,9 @@ it('Should populate list with what is loaded from server', () => {
   ]);
 
   const action = deepFreeze({
-    shoppingItems: [
-      {id: '1', itemName: '1', bought: true, removed: false},
-      {id: '1', itemName: '2', bought: false, removed: false},
-      {id: '1', itemName: '3', bought: true, removed: true},
-      {id: '1', itemName: '4', bought: false, removed: true}
+    items: [
+      {id: '1', itemName: '1', boughtDate: 'today'},
+      {id: '1', itemName: '2', boughtDate: null}
     ]
   });
 

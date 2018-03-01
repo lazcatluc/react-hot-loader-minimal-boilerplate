@@ -4,10 +4,10 @@ const mapToItem = (shoppingItem) => {
   return {
     id: shoppingItem.id,
     text: shoppingItem.itemName,
-    checked: shoppingItem.bought
+    checked: shoppingItem.boughtDate !== null
   };
 };
 
 export default (state = InitialList, action) => {
-  return action.shoppingItems.filter(shoppingItem => !shoppingItem.removed).map(mapToItem);
+  return action.items.map(mapToItem);
 };

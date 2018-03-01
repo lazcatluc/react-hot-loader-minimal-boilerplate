@@ -1,18 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
+import {AppContainer} from 'react-hot-loader'
 import state from './containers/State'
 import Root from './containers/Root'
-import WebSocket from './containers/websocket/WebSocket'
-
-WebSocket.connect();
+import ApiUrl from './containers/ApiUrl'
+import jsonp from 'jsonp'
 
 const render = () => {
   ReactDOM.render(
     <AppContainer>
       <Root currentState={state.getCurrentState()}
             onClickItem={state.checkItem}
-            show={state.show} />
+            show={state.show}/>
     </AppContainer>,
     document.getElementById('root')
   )
@@ -21,6 +20,16 @@ const render = () => {
 state.subscribe(render);
 render();
 
+jsonp(ApiUrl.userList('1464923436924425'), null, (error, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    state.loadItems(response.items);
+  }
+});
+
 if (module.hot) {
-  module.hot.accept('.', () => { render() });
+  module.hot.accept('.', () => {
+    render()
+  });
 }

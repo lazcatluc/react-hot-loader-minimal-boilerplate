@@ -9,7 +9,7 @@ const ShoppingList = (items, visibilityFilter, onClickItem) => (
       items.map((item, index) => <div key={index}
                                      className={styles[item.checked?'checked':'unchecked']}
                                      id={item.id}
-                                     onClick={() => onClickItem(index)}>{item.text}</div>)
+                                     onClick={() => onClickItem(item)}>{item.text}</div>)
     }
   </div>
 );
