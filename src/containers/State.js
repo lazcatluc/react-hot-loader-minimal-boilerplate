@@ -2,16 +2,19 @@ import { createStore } from 'redux'
 import { combineReducers } from 'redux'
 import visibilityFilter from './visibility'
 import shoppingListItems from './items'
+import newItem from './newItem'
 import ApiUrl from './ApiUrl'
 import uuid from './uuid'
 
 const store = createStore(combineReducers({
   shoppingListItems,
+  newItem,
   visibilityFilter
 }));
 
 const shoppingListId = "c00af06f-787b-44f0-afb5-81be5875ed45"
 const ws = ApiUrl.connectToList(shoppingListId);
+
 ws.subscribe((shoppingItem) => {
   if (shoppingItem.removed) {
     return store.dispatch({type: 'REMOVE_ITEM', id: shoppingItem.id});
@@ -24,13 +27,18 @@ ws.subscribe((shoppingItem) => {
   return store.dispatch({type: 'ADD_ITEM', item: shoppingItem.itemName});
 });
 
-const addItem = (itemName) => ws.sendItem({
-  id: uuid(),
-  shoppingListId,
-  itemName,
-  bought: false,
-  removed: false
-});
+const addItem = () => {
+  const value = store.getState().newItem;
+  store.dispatch({type: 'NEW_ITEM_CHANGE', value: ''});
+  ws.sendItem({
+    id: uuid(),
+    shoppingListId,
+    itemName: value,
+    bought: false,
+    removed: false
+  });
+};
+
 const checkItem = (item) => ws.sendItem({
   id: item.id,
   shoppingListId,
@@ -38,9 +46,11 @@ const checkItem = (item) => ws.sendItem({
   bought: true,
   removed: false
 });
+
 const show = (which) => store.dispatch({type: 'SHOW', which});
 const loadItems = (items) => store.dispatch({type: 'LOAD_ITEMS', items});
 const getCurrentState = () => store.getState();
+const newItemChange = (value) => store.dispatch({type: 'NEW_ITEM_CHANGE', value});
 const subscribe = store.subscribe;
 
-export default {addItem, checkItem, show, loadItems, subscribe, getCurrentState};
+export default {addItem, checkItem, show, loadItems, subscribe, getCurrentState, newItemChange};

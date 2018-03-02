@@ -11,6 +11,8 @@ const render = () => {
     <AppContainer>
       <Root currentState={state.getCurrentState()}
             onClickItem={state.checkItem}
+            onAddItem={state.addItem}
+            newItemChange={state.newItemChange}
             show={state.show}/>
     </AppContainer>,
     document.getElementById('root')

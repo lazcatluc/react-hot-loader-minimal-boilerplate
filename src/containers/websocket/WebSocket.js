@@ -15,7 +15,7 @@ export default (url, topic, sendEndpoint) => {
     var socket = new SockJS(url);
     ws.stompClient = Stomp.over(socket);
     ws.sendEndpoint = sendEndpoint;
-    return new Promise((resolve, reject) => {
+    ws.connectionAvailable = new Promise((resolve, reject) => {
       ws.stompClient.connect({}, function(frame) {
         ws.connected = true;
         ws.stompClient.subscribe(topic, function(message) {
@@ -29,6 +29,7 @@ export default (url, topic, sendEndpoint) => {
         reject('Timeout');
       }, ws.timeout);
     });
+    return ws.connectionAvailable;
   };
 
   ws.disconnect = () => {
@@ -39,7 +40,9 @@ export default (url, topic, sendEndpoint) => {
   };
   
   ws.sendItem = function (shoppingItem) {
-    ws.stompClient.send(ws.sendEndpoint, {}, JSON.stringify(shoppingItem));
+    ws.connectionAvailable.then(() => {
+      ws.stompClient.send(ws.sendEndpoint, {}, JSON.stringify(shoppingItem));  
+    });
   };
   
   ws.subscribe = (itemProcessor) => ws.itemProcessors.push(itemProcessor);

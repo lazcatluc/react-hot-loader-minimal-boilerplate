@@ -7,5 +7,7 @@ it('renders Root', () => {
   const div = document.createElement('div');
   ReactDOM.render(<Root currentState={state.getCurrentState()}
                         onClickItem={state.checkItem}
+                        onAddItem={state.addItem}
+                        newItemChange={state.newItemChange}
                         show={state.show} />, div);
 });
