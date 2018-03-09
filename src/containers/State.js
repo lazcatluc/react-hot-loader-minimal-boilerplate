@@ -47,10 +47,18 @@ const checkItem = (item) => ws.sendItem({
   removed: false
 });
 
+const removeItem = (item) => ws.sendItem({
+  id: item.id,
+  shoppingListId,
+  itemName: item.text,
+  bought: item.bought,
+  removed: true
+});
+
 const show = (which) => store.dispatch({type: 'SHOW', which});
 const loadItems = (items) => store.dispatch({type: 'LOAD_ITEMS', items});
 const getCurrentState = () => store.getState();
 const newItemChange = (value) => store.dispatch({type: 'NEW_ITEM_CHANGE', value});
 const subscribe = store.subscribe;
 
-export default {addItem, checkItem, show, loadItems, subscribe, getCurrentState, newItemChange};
+export default {addItem, checkItem, show, loadItems, subscribe, getCurrentState, newItemChange, removeItem};

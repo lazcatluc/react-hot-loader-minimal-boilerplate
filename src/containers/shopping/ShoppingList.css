@@ -14,14 +14,28 @@ div.ShoppingList div.checked {
   color: green;
 }
 
-div.ShoppingList.remaining div.checked {
+ul.ShoppingList.remaining li.checked {
   display: none;
 }
 
-div.ShoppingList.completed div.unchecked {
+ul.ShoppingList.completed li.unchecked {
   display: none;
 }
 
 a {
   padding-right: 5px;
+}
+
+li.ShoppingListRow {
+  cursor: pointer;
+  min-height: 40px;
+}
+
+li.ShoppingListRow button {
+  margin-top: -2px;
+  float: right;
+}
+
+button:focus {
+  outline: 0;
 }

@@ -8,6 +8,7 @@ it('renders Root', () => {
   ReactDOM.render(<Root currentState={state.getCurrentState()}
                         onClickItem={state.checkItem}
                         onAddItem={state.addItem}
+                        onRemoveItem={state.removeItem}
                         newItemChange={state.newItemChange}
                         show={state.show} />, div);
 });

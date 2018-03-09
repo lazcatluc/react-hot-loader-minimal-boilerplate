@@ -3,12 +3,12 @@ import ShoppingList from './shopping/ShoppingList.js'
 import VisibilityToggle from './visibility/VisibilityToggle'
 import NewItem from './newItem/NewItem'
 
-const Root = ({ currentState, onClickItem, onAddItem, newItemChange, show }) => (
-  <div>
-    <h2>My shopping list</h2>
-    {ShoppingList(currentState.shoppingListItems, currentState.visibilityFilter, onClickItem)}
+const Root = ({ currentState, onClickItem, onAddItem, onRemoveItem, newItemChange, show }) => (
+  <div className="well" style={{border: 0, borderRadius: 0}}>
+    <h1>My shopping list</h1>
+    {ShoppingList(currentState.shoppingListItems, currentState.visibilityFilter, onClickItem, onRemoveItem)}
     {NewItem(onAddItem, currentState.newItem, newItemChange)}
-    {VisibilityToggle(show)}
+    {VisibilityToggle(show, currentState.visibilityFilter)}
   </div>
 );
 
