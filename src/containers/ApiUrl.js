@@ -9,8 +9,10 @@ const connectToList = (shoppingListId) => {
   ws.connect();
   return ws;
 };
+const apiInfo = base + '/info';
 
 export default {
   userList,
+  apiInfo,
   connectToList
 };
