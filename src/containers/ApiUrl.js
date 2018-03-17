@@ -17,4 +17,4 @@ export default {
   list,
   apiInfo,
   connectToList
-};g
+};
