@@ -2,6 +2,6 @@ import InitialList from './InitialItems'
 
 export default (state = InitialList, action) => {
   return [...state,
-          {text: action.item, checked: false}
+          {id: action.item.id, text: action.item.itemName, checked: false}
          ];
 };

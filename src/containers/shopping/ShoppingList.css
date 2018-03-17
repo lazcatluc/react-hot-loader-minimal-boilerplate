@@ -27,8 +27,11 @@ a {
 }
 
 li.ShoppingListRow {
-  cursor: pointer;
   min-height: 40px;
+}
+
+div.ShoppingListRowItem {
+  cursor: pointer;
 }
 
 li.ShoppingListRow button {
@@ -37,5 +40,5 @@ li.ShoppingListRow button {
 }
 
 button:focus {
-  outline: 0;
+  outline: none !important;
 }

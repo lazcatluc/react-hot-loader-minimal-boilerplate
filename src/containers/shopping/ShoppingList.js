@@ -10,11 +10,11 @@ const ShoppingList = (items, visibilityFilter, onClickItem, onRemoveItem) => (
         <li key={index}
             className={styles.ShoppingListRow + (item.checked?' list-group-item-success ':' ') +
             styles[item.checked?'checked':'unchecked'] + ' list-group-item'}
-            id={item.id}
-            onClick={() => onClickItem(item)}>
-            <div className="col-xs-9">{item.text}</div>
-            <div className="col-xs-3">
-              <button type="button" className="btn btn-xs btn-danger img-circle" onClick={() => onRemoveItem(item)}>
+            id={item.id}>
+            <div className={styles.ShoppingListRowItem + ' col-xs-10'}
+                 onClick={() => onClickItem(item)}>{item.text}</div>
+            <div className="col-xs-2">
+              <button type="button" className="btn btn-xs btn-danger img-circle" onClick={(e) => onRemoveItem(item)}>
                 &#xff38;
               </button>
             </div>

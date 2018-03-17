@@ -5,6 +5,7 @@ import shoppingListItems from './items'
 import newItem from './newItem'
 import ApiUrl from './ApiUrl'
 import uuid from './uuid'
+import shoppingListId from './shoppingListId'
 
 const store = createStore(combineReducers({
   shoppingListItems,
@@ -12,10 +13,10 @@ const store = createStore(combineReducers({
   visibilityFilter
 }));
 
-const shoppingListId = "c00af06f-787b-44f0-afb5-81be5875ed45"
 const ws = ApiUrl.connectToList(shoppingListId);
 
 ws.subscribe((shoppingItem) => {
+  console.log(shoppingItem.bought);
   if (shoppingItem.removed) {
     return store.dispatch({type: 'REMOVE_ITEM', id: shoppingItem.id});
   }
@@ -24,7 +25,7 @@ ws.subscribe((shoppingItem) => {
   }
 
   console.log("Adding " + shoppingItem.itemName);
-  return store.dispatch({type: 'ADD_ITEM', item: shoppingItem.itemName});
+  return store.dispatch({type: 'ADD_ITEM', item: shoppingItem});
 });
 
 const addItem = () => {

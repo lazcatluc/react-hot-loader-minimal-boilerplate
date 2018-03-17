@@ -5,6 +5,7 @@ import state from './containers/State'
 import Root from './containers/Root'
 import ApiUrl from './containers/ApiUrl'
 import jsonp from 'jsonp'
+import shoppingListId from './containers/shoppingListId'
 
 const render = () => {
   ReactDOM.render(
@@ -23,7 +24,7 @@ const render = () => {
 state.subscribe(render);
 render();
 
-jsonp(ApiUrl.userList('1464923436924425'), null, (error, response) => {
+jsonp(ApiUrl.list(shoppingListId), null, (error, response) => {
   if (error) {
     console.error(error);
   } else {
