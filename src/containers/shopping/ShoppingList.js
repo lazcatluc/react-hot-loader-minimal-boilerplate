@@ -11,9 +11,9 @@ const ShoppingList = (items, visibilityFilter, onClickItem, onRemoveItem) => (
             className={styles.ShoppingListRow + (item.checked?' list-group-item-success ':' ') +
             styles[item.checked?'checked':'unchecked'] + ' list-group-item'}
             id={item.id}>
-            <div className={styles.ShoppingListRowItem + ' col-xs-10'}
+            <div className={styles.ShoppingListRowItem}
                  onClick={() => onClickItem(item)}>{item.text}</div>
-            <div className="col-xs-2">
+            <div className={styles.ShoppingListRowButton}>
               <button type="button" className="btn btn-xs btn-danger img-circle" onClick={(e) => onRemoveItem(item)}>
                 &#xff38;
               </button>

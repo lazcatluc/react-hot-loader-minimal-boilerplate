@@ -27,16 +27,24 @@ a {
 }
 
 li.ShoppingListRow {
-  min-height: 40px;
+  width: 100%;
+  font-size: 32px;
+  display: table;
 }
 
 div.ShoppingListRowItem {
   cursor: pointer;
+  display: table-cell;
+}
+
+li.ShoppingListRow div.ShoppingListRowButton {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: right;
 }
 
 li.ShoppingListRow button {
-  margin-top: -2px;
-  float: right;
+  font-size: 24px;
 }
 
 button:focus {

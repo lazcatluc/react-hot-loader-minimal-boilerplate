@@ -5,7 +5,6 @@ import NewItem from './newItem/NewItem'
 
 const Root = ({ currentState, onClickItem, onAddItem, onRemoveItem, newItemChange, show }) => (
   <div className="well" style={{border: 0, borderRadius: 0}}>
-    <h1>My shopping list</h1>
     {ShoppingList(currentState.shoppingListItems, currentState.visibilityFilter, onClickItem, onRemoveItem)}
     {NewItem(onAddItem, currentState.newItem, newItemChange)}
     {VisibilityToggle(show, currentState.visibilityFilter)}
