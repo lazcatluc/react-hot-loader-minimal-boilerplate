@@ -6,9 +6,9 @@ export default (show, visibilityFilter) => (
       <input type="submit" className={styles.footerBtn + " btn btn-primary"}
              onClick={() => show('all')} value="All" disabled={visibilityFilter==='all'} />
       <input type="submit" className={styles.footerBtn + " btn btn-warning"}
-             onClick={() => show('remaining')} value="Remaining" disabled={visibilityFilter==='remaining'} />
+             onClick={() => show('remaining')} value="Added" disabled={visibilityFilter==='remaining'} />
       <input type="submit" className={styles.footerBtn + " btn btn-success"}
-             onClick={() => show('completed')} value="Completed" disabled={visibilityFilter==='completed'}/>
+             onClick={() => show('completed')} value="Bought" disabled={visibilityFilter==='completed'}/>
   </div>
 );
 
