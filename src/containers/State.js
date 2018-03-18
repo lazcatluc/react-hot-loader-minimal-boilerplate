@@ -40,13 +40,25 @@ const addItem = () => {
   });
 };
 
-const checkItem = (item) => ws.sendItem({
-  id: item.id,
-  shoppingListId,
-  itemName: item.text,
-  bought: true,
-  removed: false
-});
+const checkItem = (item) => {
+  if (item.checked) {
+    removeItem(item);
+    return ws.sendItem({
+      id: uuid(),
+      shoppingListId,
+      itemName: item.text,
+      bought: false,
+      removed: false
+    });
+  }
+  return ws.sendItem({
+    id: item.id,
+    shoppingListId,
+    itemName: item.text,
+    bought: true,
+    removed: false
+  });
+}
 
 const removeItem = (item) => ws.sendItem({
   id: item.id,

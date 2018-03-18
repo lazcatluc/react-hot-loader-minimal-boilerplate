@@ -30,6 +30,7 @@ li.ShoppingListRow {
   width: 100%;
   font-size: 32px;
   display: table;
+  margin-bottom: 10px;
 }
 
 div.ShoppingListRowItem {
