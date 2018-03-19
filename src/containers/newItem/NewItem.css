@@ -12,11 +12,27 @@
 }
 
 .commentForm input[type="text"] {
-  height: 60px;
+  height: 82px;
   font-size: 32px;
 }
 
 .addButton {
-  font-size: 32px;
+  font-size: 48px;
   padding-right: 10px;
+}
+
+@media (max-width: 512px) {
+  .commentForm {
+    font-size: 16px;
+  }
+
+  .commentForm input[type="text"] {
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .addButton {
+    font-size: 16px;
+  }
+
 }

@@ -28,7 +28,7 @@ a {
 
 li.ShoppingListRow {
   width: 100%;
-  font-size: 32px;
+  font-size: 48px;
   display: table;
   margin-bottom: 10px;
 }
@@ -45,9 +45,19 @@ li.ShoppingListRow div.ShoppingListRowButton {
 }
 
 li.ShoppingListRow button {
-  font-size: 24px;
+  font-size: 32px;
 }
 
 button:focus {
   outline: none !important;
+}
+
+@media (max-width: 512px) {
+  li.ShoppingListRow {
+    font-size: 16px;
+  }
+
+  li.ShoppingListRow button {
+    font-size: 12px;
+  }
 }
