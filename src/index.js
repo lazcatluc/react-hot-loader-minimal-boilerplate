@@ -18,7 +18,8 @@ const render = () => {
             onAddItem={state.addItem}
             onRemoveItem={state.removeItem}
             newItemChange={state.newItemChange}
-            show={state.show}/>
+            show={state.show}
+            setItemPrice={state.setItemPrice} />
     </AppContainer>,
     document.getElementById('root')
   )

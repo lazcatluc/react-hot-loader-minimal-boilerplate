@@ -26,6 +26,10 @@ a {
   padding-right: 5px;
 }
 
+ul.ShoppingList li:last-child {
+
+}
+
 li.ShoppingListRow {
   width: 100%;
   font-size: 48px;
@@ -38,10 +42,33 @@ div.ShoppingListRowItem {
   display: table-cell;
 }
 
+li.ShoppingListRow div.ShoppingListItemPrice {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: right;
+  padding-right: 10px;
+}
+
+li.ShoppingListRow div.ShoppingListItemPrice.ShoppingListItemPriceTotal {
+  padding-right: 74px;
+}
+
+li.ShoppingListRow div.ShoppingListItemPrice input[type="text"] {
+  height: 52px;
+  font-size: 32px;
+  width: 130px;
+  float: right;
+}
+
 li.ShoppingListRow div.ShoppingListRowButton {
   display: table-cell;
   vertical-align: middle;
   text-align: right;
+  width: 50px;
+}
+
+li.ShoppingListRow:last-child .ShoppingListRowItem {
+  padding-left: 17px;
 }
 
 li.ShoppingListRow button {
@@ -57,7 +84,21 @@ button:focus {
     font-size: 16px;
   }
 
+  li.ShoppingListRow div.ShoppingListRowButton {
+    width: 30px;
+  }
+
   li.ShoppingListRow button {
     font-size: 12px;
+  }
+
+  li.ShoppingListRow div.ShoppingListItemPrice input[type="text"] {
+    height: 24px;
+    font-size: 16px;
+    width: 80px;
+  }
+
+  li.ShoppingListRow div.ShoppingListItemPrice.ShoppingListItemPriceTotal {
+    padding-right: 54px;
   }
 }

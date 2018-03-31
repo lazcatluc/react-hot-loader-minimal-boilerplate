@@ -58,7 +58,7 @@ const checkItem = (item) => {
     bought: true,
     removed: false
   });
-}
+};
 
 const removeItem = (item) => ws.sendItem({
   id: item.id,
@@ -68,10 +68,13 @@ const removeItem = (item) => ws.sendItem({
   removed: true
 });
 
+const setItemPrice = (item, value) => store.dispatch({type: 'SET_ITEM_VALUE', item, value});
+
 const show = (which) => store.dispatch({type: 'SHOW', which});
 const loadItems = (items) => store.dispatch({type: 'LOAD_ITEMS', items});
 const getCurrentState = () => store.getState();
 const newItemChange = (value) => store.dispatch({type: 'NEW_ITEM_CHANGE', value});
 const subscribe = store.subscribe;
 
-export default {addItem, checkItem, show, loadItems, subscribe, getCurrentState, newItemChange, removeItem};
+export default {addItem, checkItem, show, loadItems, subscribe, getCurrentState,
+  newItemChange, removeItem, setItemPrice};
