@@ -14,7 +14,7 @@ const ShoppingList = (items, visibilityFilter, onClickItem, onRemoveItem, setIte
             <div className={styles.ShoppingListRowItem}
                  onClick={() => onClickItem(item)}>{item.text}</div>
             <div className={styles.ShoppingListItemPrice}>
-              <input type="text" value={item.value} className="form-control"
+              <input type="tel" value={item.value} className="form-control"
                      onChange={event => setItemPrice(item, event.target.value)} />
             </div>
             <div className={styles.ShoppingListRowButton}>

@@ -53,7 +53,7 @@ li.ShoppingListRow div.ShoppingListItemPrice.ShoppingListItemPriceTotal {
   padding-right: 74px;
 }
 
-li.ShoppingListRow div.ShoppingListItemPrice input[type="text"] {
+li.ShoppingListRow div.ShoppingListItemPrice input[type="tel"] {
   height: 52px;
   font-size: 32px;
   width: 130px;
@@ -92,7 +92,7 @@ button:focus {
     font-size: 12px;
   }
 
-  li.ShoppingListRow div.ShoppingListItemPrice input[type="text"] {
+  li.ShoppingListRow div.ShoppingListItemPrice input[type="tel"] {
     height: 24px;
     font-size: 16px;
     width: 80px;
