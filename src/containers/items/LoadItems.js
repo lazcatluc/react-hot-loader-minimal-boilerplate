@@ -4,7 +4,8 @@ const mapToItem = (shoppingItem) => {
   return {
     id: shoppingItem.id,
     text: shoppingItem.itemName,
-    checked: shoppingItem.boughtDate !== null
+    checked: shoppingItem.boughtDate !== null,
+    value: shoppingItem.cost
   };
 };
 

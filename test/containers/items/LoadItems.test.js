@@ -10,13 +10,13 @@ it('Should populate list with what is loaded from server', () => {
 
   const action = deepFreeze({
     items: [
-      {id: '1', itemName: '1', boughtDate: 'today'},
+      {id: '1', itemName: '1', boughtDate: 'today', cost: 10.0},
       {id: '1', itemName: '2', boughtDate: null}
     ]
   });
 
   expect(LoadItems(initialState, action)).toEqual([
-    {id: '1', text: "1", checked: true},
+    {id: '1', text: "1", checked: true, value: 10.0},
     {id: '1', text: "2", checked: false}
   ]);
 });
