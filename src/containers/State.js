@@ -21,7 +21,7 @@ ws.subscribe((shoppingItem) => {
     return store.dispatch({type: 'REMOVE_ITEM', id: shoppingItem.id});
   }
   if (shoppingItem.bought) {
-    return store.dispatch({type: 'CHECK_ITEM', id: shoppingItem.id});
+    return store.dispatch({type: 'CHECK_ITEM', id: shoppingItem.id, cost: shoppingItem.cost});
   }
 
   console.log("Adding " + shoppingItem.itemName);
@@ -56,6 +56,7 @@ const checkItem = (item) => {
     shoppingListId,
     itemName: item.text,
     bought: true,
+    cost: item.value,
     removed: false
   });
 };
