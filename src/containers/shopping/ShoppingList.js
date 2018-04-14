@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from "./ShoppingList.css";
+import SumCalculator from "./SumCalculator"
 
 const shoppingListItem = "shoppingListItem";
 
@@ -27,7 +28,7 @@ const ShoppingList = (items, visibilityFilter, onClickItem, onRemoveItem, setIte
     <li className={styles.ShoppingListRow}>
       <div className={styles.ShoppingListRowItem}>Total</div>
       <div className={styles.ShoppingListItemPrice + ' ' + styles.ShoppingListItemPriceTotal}>
-        {items.map((item) => item.value||0).map(parseFloat).filter(x => !isNaN(x)).reduce((x, y) => x + y, 0)}
+        {SumCalculator(items)}
       </div>
     </li>
   </ul>
