@@ -5,7 +5,6 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     'app': [
-      'react-hot-loader/patch',
       './src/index'
     ]
   },
@@ -22,6 +21,9 @@ module.exports = {
           modules: true,
           localIdentName: '[name]__[local]___[hash:base64:5]'
         }
+      }, {
+        test: /\/Root\.js$/, // regex to match files to receive react-hot-loader functionality
+        loader: require.resolve('react-hot-loader-loader'),
       }
     ]
   }
