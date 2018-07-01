@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "dev": "webpack-dev-server --hot --history-api-fallback --open"
+    "dev": "webpack-dev-server --hot --history-api-fallback --open",
+    "uglifyjs": "uglifyjs"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "babel-preset-react": "6.23.0",
     "css-loader": "0.28.9",
     "deepfreeze": "2.0.0",
+    "html-webpack-plugin": "^3.2.0",
     "jest": "22.2.2",
     "jsonp": "0.2.1",
     "net": "1.0.2",
@@ -50,7 +52,8 @@
     "stomp-client": "0.9.0",
     "stomp-websocket-js": "1.0.0",
     "style-loader": "0.20.1",
-    "webpack": "2.2.1",
+    "uglifyjs": "^2.4.11",
+    "webpack": "2.7.0",
     "webpack-dev-server": "2.4.1"
   },
   "jest": {
